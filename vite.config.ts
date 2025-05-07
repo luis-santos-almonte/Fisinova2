@@ -10,6 +10,11 @@ export default defineConfig(({ mode }) => {
     server: {
       port: env.VITE_PORT ? parseInt(env.VITE_PORT) : 5173,
     },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/setupTests.ts',
+    },
     resolve: {
       alias: {
         '@assets': path.resolve(__dirname, './src/assets'),
