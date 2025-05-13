@@ -1,9 +1,17 @@
-import Logo from '@assets/Logo.png'
+import { Button } from '@mantine/core'
+import { useTheme } from './store'
 
 function App() {
+  const { colorScheme, setColorScheme } = useTheme()
   return (
     <>
-      <img src={Logo} style={{ width: '50%' }} alt="logo de fisinova" />
+      <Button
+        onClick={() =>
+          setColorScheme(colorScheme === 'light' ? 'dark' : 'light')
+        }
+      >
+        Cambiar a modo {colorScheme === 'light' ? 'oscuro' : 'claro'}
+      </Button>
     </>
   )
 }
