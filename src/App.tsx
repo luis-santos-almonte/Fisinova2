@@ -1,17 +1,10 @@
-import { Button } from '@mantine/core'
-import { useTheme } from './store'
+import InterRoutes from './routes/InterRoutes'
 
 function App() {
-  const { colorScheme, setColorScheme } = useTheme()
   return (
     <>
-      <Button
-        onClick={() =>
-          setColorScheme(colorScheme === 'light' ? 'dark' : 'light')
-        }
-      >
-        Cambiar a modo {colorScheme === 'light' ? 'oscuro' : 'claro'}
-      </Button>
+      {/* <h1>Holaaa</h1> */}
+      <InterRoutes />
     </>
   )
 }
