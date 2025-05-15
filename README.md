@@ -1,54 +1,39 @@
-# React + TypeScript + Vite
+# FisiNova - Frontend para Gestión de Citas de Fisioterapia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción del Proyecto
 
-Currently, two official plugins are available:
+FisiNova es un frontend desarrollado con React + Vite para un sistema de gestión de citas de un consultorio de fisioterapia.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Requisitos Previos
 
-## Expanding the ESLint configuration
+- Node.js (v16+ recomendado)
+- npm o yarn
+- Git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔧 Instalación
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone [URL_DEL_REPOSITORIO]
+cd FisiNova
+npm install  # o yarn
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Configuración
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Crear archivo .env en la raíz
+2. Agrega la variables de entorno requeridas para la funcionalidad del proyecto que te seran suministradas por otra via.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Ejemplo de contenido de .env
+
+```bash
+VITE_PORT=3000
+```
+
+## 🏃 Ejecución
+
+Una vez configuradas las variables de entorno podra correr el proyecto en su entorno local ejecutando el siguiente comando.
+
+```bash
+npm run dev # para levantar el proyecto en modo desarrollo
+npm test # para testear el codigo
 ```
