@@ -11,7 +11,20 @@ export default function CustomContainer({
   ...rest
 }: CustomContainerProps) {
   return (
-    <Container h={h} fluid={fluid} {...rest}>
+    <Container
+      fluid={fluid}
+      h={h}
+      px="md"
+      py="sm"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
+      }}
+      {...rest}
+    >
       {children}
     </Container>
   )

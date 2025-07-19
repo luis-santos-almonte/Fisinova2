@@ -6,6 +6,7 @@ import {
   type MantineColorsTuple,
   type MantineThemeOverride,
 } from '@mantine/core'
+import { Notifications } from '@mantine/notifications'
 
 const customCyan: MantineColorsTuple = [
   '#e0fcff',
@@ -45,6 +46,13 @@ const customTheme: MantineThemeOverride = createTheme({
     xl: '3rem',
     xxl: '4rem',
   },
+  breakpoints: {
+    xs: '30em',
+    sm: '48em',
+    md: '64em',
+    lg: '75em',
+    xl: '90em',
+  },
 })
 
 const colorSchemeManager = localStorageColorSchemeManager({
@@ -62,6 +70,7 @@ export function ThemeProvider({ children }: Props) {
       defaultColorScheme="auto"
       colorSchemeManager={colorSchemeManager}
     >
+      <Notifications position="top-right" zIndex={10000} />
       {children}
     </MantineProvider>
   )
