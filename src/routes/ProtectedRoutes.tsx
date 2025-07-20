@@ -12,7 +12,7 @@ function ProtectedRoutes({ children }: ProtectedRoutesProps) {
   const isLogged = getSessionInfo()
 
   return !isLogged ? (
-    <Navigate to={PATH_LOGIN} />
+    <Navigate to={PATH_LOGIN} replace />
   ) : (
     <CustomAppShell>{children}</CustomAppShell>
   )

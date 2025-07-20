@@ -13,7 +13,7 @@ export default function Header() {
   const { mutate: handledLogout } = useCustomMutation({
     execute: auth.logout,
     onSuccess: () => {
-      navigate(PATH_LOGIN)
+      navigate(PATH_LOGIN, { replace: true })
     },
   })
   return (
