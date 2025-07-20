@@ -16,7 +16,7 @@ export default function Login() {
   const { mutate: loginUser, isPending } = useCustomMutation({
     execute: auth.login,
     onSuccess: () => {
-      navigate(PATH_MAIN)
+      navigate(PATH_MAIN, { replace: true })
     },
     onError: (err) => {
       console.log(err)

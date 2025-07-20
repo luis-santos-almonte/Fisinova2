@@ -14,11 +14,11 @@ fisinovaApi.interceptors.response.use(
       localStorage.removeItem('sessionUser')
       const currentPath = window.location.pathname
       if (currentPath !== PATH_LOGIN) {
+        window.location.replace(PATH_LOGIN)
         showNotification({
           type: 'info',
           message: 'Sesión caducada',
         })
-        window.location.replace(PATH_LOGIN)
       }
     }
     return Promise.reject(err)

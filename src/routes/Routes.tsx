@@ -8,6 +8,7 @@ import {
 import Login from '../features/auth/pages/Login'
 import PublicRouter from './PublicRouter'
 import ProtectedRoutes from './ProtectedRoutes'
+import { NotFoundPage } from '../layout/not-found/NotFoundPage'
 
 export default function InterRoutes() {
   return (
@@ -28,7 +29,7 @@ export default function InterRoutes() {
         path={PATH_MAIN}
         element={<ProtectedRoutes>Holaa desde aqui</ProtectedRoutes>}
       />
-      <Route path={PATH_NOT_FOUND} element={<h1>Not Found Page</h1>} />
+      <Route path={PATH_NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
   )
 }
