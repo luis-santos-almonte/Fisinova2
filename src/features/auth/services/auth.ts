@@ -5,7 +5,7 @@ class AuthService {
   async login(credentials: AuthCredentials) {
     const res = await fisinovaApi.post(`/login`, credentials)
     if (res.data) {
-      localStorage.setItem('sessionUser', JSON.stringify(res.data.data.user))
+      localStorage.setItem('sessionUser', JSON.stringify(res?.data?.data?.user))
     }
     return res.data
   }

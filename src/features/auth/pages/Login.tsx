@@ -73,7 +73,7 @@ export default function Login() {
             }}
           />
           <CustomButton
-            disabled={isPending}
+            loading={isPending}
             fullWidth
             mt="xl"
             radius="md"
