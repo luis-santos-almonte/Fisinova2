@@ -7,11 +7,12 @@ const ThemeToggleButton = () => {
 
   return (
     <ActionIcon
-      variant="outline"
-      onClick={() => toggleColorScheme()}
+      variant="transparent"
+      onClick={toggleColorScheme}
       title="Cambiar tema"
+      size={18}
     >
-      {colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
+      {colorScheme === 'dark' ? <IconSun /> : <IconMoon />}
     </ActionIcon>
   )
 }
