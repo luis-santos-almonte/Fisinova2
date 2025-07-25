@@ -1,19 +1,17 @@
-import { ActionIcon } from '@mantine/core'
-import { IconSun, IconMoon } from '@tabler/icons-react'
 import { useTheme } from '../../store'
+import { CustomActionIcon } from '../ActionIcon/CustomActionIcon'
 
 const ThemeToggleButton = () => {
   const { colorScheme, toggleColorScheme } = useTheme()
 
   return (
-    <ActionIcon
+    <CustomActionIcon
+      icon={colorScheme === 'dark' ? 'sun' : 'moon'}
       variant="transparent"
       onClick={toggleColorScheme}
       title="Cambiar tema"
-      size={18}
-    >
-      {colorScheme === 'dark' ? <IconSun /> : <IconMoon />}
-    </ActionIcon>
+      size={22}
+    />
   )
 }
 

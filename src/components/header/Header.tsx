@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Burger,
   Flex,
   Group,
@@ -7,7 +6,6 @@ import {
   Title,
   useMantineTheme,
 } from '@mantine/core'
-import { IconLogout, IconUser } from '@tabler/icons-react'
 import ThemeToggleButton from '../theme-toggle/ThemeToggleButton'
 import { useCustomMutation } from '../../hooks/UseCustomMutation'
 import auth from '../../features/auth/services/auth'
@@ -15,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import { PATH_LOGIN } from '../../routes/PathsRoutes'
 import logo from '../../assets/ico.png'
 import { getSessionInfo } from '../../utils/getSessionInfo'
+import { CustomActionIcon } from '../ActionIcon/CustomActionIcon'
 
 interface HeaderProps {
   toggleDesktop: () => void
@@ -67,19 +66,17 @@ export default function Header({
       </Group>
       <Group>
         <Group>
-          <IconUser size={20} />
+          <CustomActionIcon variant="transparent" icon="user" />
           <Text style={{ marginLeft: '-15px' }}>{user?.name}</Text>
         </Group>
         <ThemeToggleButton />
-        <ActionIcon
+        <CustomActionIcon
+          icon="logout"
           loading={isPending}
           variant="transparent"
           title="Cerrar sesión"
-          onClick={() => handledLogout()}
-          size={20}
-        >
-          <IconLogout />
-        </ActionIcon>
+          onClick={handledLogout}
+        />
       </Group>
     </Flex>
   )
