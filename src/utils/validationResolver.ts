@@ -1,80 +1,52 @@
-export interface ValidationRules {
-  required?: boolean | string
+import type { Rule, RuleObject } from 'antd/es/form'
+
+type RuleType = RuleObject['type']
+
+interface RuleOptions {
+  required?: boolean
   min?: number
   max?: number
-  minLength?: number
   maxLength?: number
-  pattern?: RegExp
-  type?: 'email' | 'number' | 'string'
-  custom?: (value) => string | null
+  label?: string
+  type?: RuleType
 }
 
-export const defaultValidationMessages = {
-  required: (label: string) => `'${label}' es requerido.`,
-  email: (label: string) => `'${label}' no es un email válido.`,
-  number: (label: string) => `'${label}' debe ser un número.`,
-  min: (label: string, min: number) =>
-    `'${label}' debe ser mayor o igual a ${min}.`,
-  max: (label: string, max: number) =>
-    `'${label}' debe ser menor o igual a ${max}.`,
-  minLength: (label: string, min: number) =>
-    `'${label}' debe tener al menos ${min} caracteres.`,
-  maxLength: (label: string, max: number) =>
-    `'${label}' no puede exceder ${max} caracteres.`,
-  pattern: (label: string) => `'${label}' no cumple el formato requerido.`,
-}
+export const generateValidationRules = ({
+  required,
+  min,
+  max,
+  maxLength,
+  label = 'Este campo',
+  type = 'string',
+}: RuleOptions): Rule[] => {
+  const rules: Rule[] = []
 
-export const getMantineValidations = (
-  rules: ValidationRules,
-  label: string = 'Este campo'
-) => {
-  return (value) => {
-    if (rules.required && !value?.toString().trim()) {
-      return typeof rules.required === 'string'
-        ? rules.required
-        : defaultValidationMessages.required(label)
-    }
-
-    if (rules.type === 'email' && value && !/^\S+@\S+$/.test(value)) {
-      return defaultValidationMessages.email(label)
-    }
-
-    if (rules.type === 'number' && value && isNaN(Number(value))) {
-      return defaultValidationMessages.number(label)
-    }
-
-    if (rules.min !== undefined && value && Number(value) < rules.min) {
-      return defaultValidationMessages.min(label, rules.min)
-    }
-
-    if (rules.max !== undefined && value && Number(value) > rules.max) {
-      return defaultValidationMessages.max(label, rules.max)
-    }
-
-    if (
-      rules.minLength !== undefined &&
-      value &&
-      value.length < rules.minLength
-    ) {
-      return defaultValidationMessages.minLength(label, rules.minLength)
-    }
-
-    if (
-      rules.maxLength !== undefined &&
-      value &&
-      value.length > rules.maxLength
-    ) {
-      return defaultValidationMessages.maxLength(label, rules.maxLength)
-    }
-
-    if (rules.pattern && value && !rules.pattern.test(value)) {
-      return defaultValidationMessages.pattern(label)
-    }
-
-    if (rules.custom) {
-      return rules.custom(value)
-    }
-
-    return null
+  if (required) {
+    rules.push({ required: true, message: `${label} es requerido` })
   }
+
+  if (min !== undefined) {
+    rules.push({
+      type,
+      min,
+      message: `${label} debe tener al menos: ${min} caracteres`,
+    })
+  }
+
+  if (max !== undefined) {
+    rules.push({
+      type,
+      max,
+      message: `${label} debe tener como máximo: ${max} caracteres`,
+    })
+  }
+
+  if (maxLength !== undefined) {
+    rules.push({
+      max: maxLength,
+      message: `${label} debe tener como máximo: ${maxLength} caracteres`,
+    })
+  }
+
+  return rules
 }

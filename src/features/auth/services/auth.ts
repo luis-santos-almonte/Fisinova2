@@ -5,7 +5,7 @@ class AuthService {
   async login(credentials: AuthCredentials) {
     const res = await serverCore.post(`/login`, credentials)
     if (res.data) {
-      localStorage.setItem('sessionUser', JSON.stringify(res?.data?.data?.user))
+      localStorage.setItem('sessionUser', JSON.stringify(res?.data?.data))
     }
     return res.data
   }

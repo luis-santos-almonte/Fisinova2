@@ -1,7 +1,9 @@
-import { Layout, Grid, Drawer, Button } from 'antd'
+import { Layout, Grid, Drawer } from 'antd'
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
+import { CustomButton } from '../components/Button/CustomButton'
+import { myPrimaryColor } from '../utils/constants'
 
 const { Header, Sider, Content } = Layout
 const { useBreakpoint } = Grid
@@ -36,7 +38,7 @@ export const AppShell = ({
         style={{
           height: 64,
           paddingInline: 16,
-          background: '#fff',
+          background: `${myPrimaryColor}`,
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           display: 'flex',
           alignItems: 'center',
@@ -46,7 +48,7 @@ export const AppShell = ({
           zIndex: 1001,
         }}
       >
-        <Button
+        <CustomButton
           icon={isNavCollapsed ? <MenuOutlined /> : <CloseOutlined />}
           onClick={toggleNav}
           style={{ marginRight: 16 }}

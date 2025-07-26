@@ -23,7 +23,7 @@ serverCore.interceptors.response.use(
         })
       }
     }
-    return Promise.reject(err)
+    return Promise.reject({ response: err.response.data, err })
   }
 )
 

@@ -11,7 +11,7 @@ interface LoginLayoutProps {
 
 export const LoginShell = ({ logo, form }: LoginLayoutProps) => {
   const screens = useBreakpoint()
-  const isMobile = !screens.md // md = 768px
+  const isMobile = !screens.md
 
   if (isMobile) {
     return (

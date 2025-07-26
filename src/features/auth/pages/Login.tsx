@@ -1,23 +1,28 @@
+import { useNavigate } from 'react-router-dom'
+import { CustomButton } from '../../../components/Button/CustomButton'
+import { CustomForm } from '../../../components/form/CustomForm'
+import { CustomFormItem } from '../../../components/form/CustomFormItem'
+import { CustomInput } from '../../../components/input/CustomInput'
+import { useCustomMutation } from '../../../hooks/UseCustomMutation'
+import { PATH_MAIN } from '../../../routes/pathts'
+import { showNotification } from '../../../utils/showNotification'
 import { LoginShell } from '../components/LoginShell'
-import { Form, Input, Button } from 'antd'
+import auth from '../services/auth'
 
 export const Login = () => {
-  const handleFinish = () => {
-    console.log('Login:')
-  }
-  // const { mutate: loginUser, isPending } = useCustomMutation({
-  //   execute: auth.login,
-  //   onSuccess: () => {
-  //     navigate(PATH_MAIN, { replace: true })
-  //   },
-  //   onError: (err) => {
-  //     console.log(err)
-  //     showNotification({
-  //       type: 'error',
-  //       message: `${err.response.data.message}`,
-  //     })
-  //   },
-  // })
+  const navigate = useNavigate()
+  const { mutate: loginUser, isPending } = useCustomMutation({
+    execute: auth.login,
+    onSuccess: () => {
+      navigate(PATH_MAIN, { replace: true })
+    },
+    onError: (err) => {
+      showNotification({
+        type: 'error',
+        message: `${err.response.message}`,
+      })
+    },
+  })
   return (
     <LoginShell
       logo={
@@ -28,27 +33,24 @@ export const Login = () => {
         />
       }
       form={
-        <Form layout="vertical" onFinish={handleFinish}>
-          <Form.Item
-            label="Usuario"
-            name="username"
-            rules={[{ required: true, message: 'Ingrese su usuario' }]}
-          >
-            <Input />
-          </Form.Item>
+        <CustomForm layout="vertical" onFinish={loginUser}>
+          <CustomFormItem label="Usuario" name="name" required>
+            <CustomInput size="large" />
+          </CustomFormItem>
 
-          <Form.Item
-            label="Contraseña"
-            name="password"
-            rules={[{ required: true, message: 'Ingrese su contraseña' }]}
-          >
-            <Input.Password />
-          </Form.Item>
+          <CustomFormItem label="Contraseña" name="password" required>
+            <CustomInput.Password size="large" />
+          </CustomFormItem>
 
-          <Button type="primary" htmlType="submit" block>
+          <CustomButton
+            loading={isPending}
+            type="primary"
+            htmlType="submit"
+            block
+          >
             Iniciar sesión
-          </Button>
-        </Form>
+          </CustomButton>
+        </CustomForm>
       }
     />
   )
