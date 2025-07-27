@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { PATH_LOGIN } from './pathts'
 import { getSessionInfo } from '../utils/getSessionInfo'
 import { AppShell } from '../layout/AppShell'
+import Header from '../components/header/Header'
 
 interface PrivateRoutesProps {
   children: ReactNode
@@ -15,7 +16,7 @@ function PrivateRoutes({ children }: PrivateRoutesProps) {
     <Navigate to={PATH_LOGIN} replace />
   ) : (
     <AppShell
-      headerContent={<div>Mi Header</div>}
+      headerContent={<Header />}
       navContent={<div>Menú o navegación</div>}
     >
       {children}
