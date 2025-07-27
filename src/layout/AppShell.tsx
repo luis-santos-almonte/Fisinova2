@@ -65,6 +65,8 @@ export const AppShell = ({
             style={{
               background: '#fff',
               borderRight: '1px solid #f0f0f0',
+              overflow: 'auto',
+              height: 'calc(100vh - 64px)',
             }}
           >
             {navContent}
