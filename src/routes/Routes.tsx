@@ -4,6 +4,7 @@ import PublicRoutes from './PublicRoutes'
 import PrivateRoutes from './PrivateRoutes'
 import NotFaundPage from '../layout/NotFaundPage'
 import { Login } from '../features/auth/pages/Login'
+import { PATH_REGISTER_PERSONAL } from '../features/administrator/menu/path'
 
 const AppRoutes = () => {
   return (
@@ -12,7 +13,6 @@ const AppRoutes = () => {
         path={PATH_LOGIN}
         element={
           <PublicRoutes>
-            {/* <h1>Login</h1> */}
             <Login />
           </PublicRoutes>
         }
@@ -24,6 +24,10 @@ const AppRoutes = () => {
       <Route
         path={PATH_MAIN}
         element={<PrivateRoutes>Holaa desde aqui</PrivateRoutes>}
+      />
+      <Route
+        path={PATH_REGISTER_PERSONAL}
+        element={<PrivateRoutes>Estas registrando un personal</PrivateRoutes>}
       />
       <Route path={PATH_NOT_FOUND} element={<NotFaundPage />} />
     </Routes>
