@@ -25,6 +25,8 @@ function Header() {
   const user = getSessionInfo()
   const firstLetter = user?.name?.charAt(0)?.toUpperCase() || 'U'
 
+  console.log(user)
+
   const { mutate: logoutnUser, isPending } = useCustomMutation({
     execute: auth.logout,
   })
