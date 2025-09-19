@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { patient } from '../../features/patient/menu/patient'
 import { filterMenuItemsByRole } from '../../utils/filterMenuByRol'
-import { getSessionInfo } from '../../utils/getSessionInfo'
+import { useAuth } from '../../hooks/userAuth'
 import type { AppMenuItem } from '../../utils/constants'
 import { appointment } from '../../features/appointment/menu/appointment'
 
 export const Navbar = () => {
   const navigate = useNavigate()
-
-  const { rols } = getSessionInfo()
-  const userRoles = rols || []
+  const { user } = useAuth()
+  const userRoles = user?.rols || []
 
   const handleClick: MenuProps['onClick'] = (e) => {
     navigate(e.key)

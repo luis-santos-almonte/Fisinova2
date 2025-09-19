@@ -1,10 +1,14 @@
 export const appointment = {
-  key: 'Appointment',
-  label: 'Citas',
+  key: "appointments",
+  label: "Citas",
   children: [
     {
-      key: 'consult-appointments',
-      label: 'Consultar citas',
+      key: "/consult-appointments",
+      label: "Consultar citas",
+    },
+    {
+      key: "/create-appointment",
+      label: "Crear cita",
     },
   ],
-}
+};

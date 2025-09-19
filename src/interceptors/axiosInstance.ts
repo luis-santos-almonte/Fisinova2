@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import { PATH_LOGIN } from '../routes/pathts'
 import { showNotification } from '../utils/showNotification'
 
@@ -11,6 +10,12 @@ const serverCore = axios.create({
 serverCore.interceptors.response.use(
   (res) => res,
   (err) => {
+    console.log('🔍 Error interceptado:', {
+      status: err.response?.status,
+      url: err.config?.url,
+      data: err.response?.data
+    })
+
     if (err.response?.status === 401) {
       localStorage.removeItem('sessionUser')
       const currentPath = window.location.pathname

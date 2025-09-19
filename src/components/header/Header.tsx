@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
-import { getSessionInfo } from '../../utils/getSessionInfo'
+import { useAuth } from '../../hooks/userAuth'
 import { CustomButton } from '../Button/CustomButton'
 import { CustomConfirm } from '../pop-confirm/CustomConfirm'
 import auth from '../../features/auth/services/auth'
@@ -22,10 +22,8 @@ function Header() {
   const screens = useBreakpoint()
   const isMobile = !screens.md
 
-  const user = getSessionInfo()
+  const { user } = useAuth()
   const firstLetter = user?.name?.charAt(0)?.toUpperCase() || 'U'
-
-  console.log(user)
 
   const { mutate: logoutnUser, isPending } = useCustomMutation({
     execute: auth.logout,
@@ -35,6 +33,11 @@ function Header() {
     {
       key: 'name',
       label: <Text strong>{user?.name || 'Usuario'}</Text>,
+      disabled: true,
+    },
+    {
+      key: 'roles',
+      label: <Text type="secondary">Roles: {user?.roles?.join(', ') || 'Sin roles'}</Text>,
       disabled: true,
     },
     {
